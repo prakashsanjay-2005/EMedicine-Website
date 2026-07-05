@@ -25,47 +25,35 @@ namespace EMedicine.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterDto model)
         {
-            if (await _db.Users.AnyAsync(x => x.Email == model.Email))
-                return BadRequest("Email already exists");
-
-            // Email Validation
-            if (!System.Text.RegularExpressions.Regex.IsMatch(
-                model.Email,
-                @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            try
             {
-                return BadRequest("Invalid email format");
+                if (await _db.Users.AnyAsync(x => x.Email == model.Email))
+                    return BadRequest("Email already exists");
+
+                var user = new User
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Email = model.Email,
+                    Password = BCrypt.Net.BCrypt.HashPassword(model.Password),
+                    PhoneNumber = model.PhoneNumber,
+                    Address = model.Address,
+                    City = model.City,
+                    Pincode = model.Pincode,
+                    Role = "User",
+                    Status = 1,
+                    CreatedOn = DateTime.UtcNow
+                };
+
+                _db.Users.Add(user);
+                await _db.SaveChangesAsync();
+
+                return Ok("Registration successful");
             }
-
-            // Strong Password Validation
-            if (!System.Text.RegularExpressions.Regex.IsMatch(
-                model.Password,
-                @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$"))
+            catch (Exception ex)
             {
-                return BadRequest(
-                    "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number and one special character.");
+                return StatusCode(500, ex.ToString());
             }
-
-            var user = new User
-            {
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                Email = model.Email,
-                Password = BCrypt.Net.BCrypt.HashPassword(model.Password),
-
-                PhoneNumber = model.PhoneNumber,
-                Address = model.Address,
-                City = model.City,
-                Pincode = model.Pincode,
-
-                Role = "User",
-                Status = 1,
-                CreatedOn = DateTime.Now
-            };
-
-            _db.Users.Add(user);
-            await _db.SaveChangesAsync();
-
-            return Ok("Registration successful");
         }
 
         [HttpPost("login")]

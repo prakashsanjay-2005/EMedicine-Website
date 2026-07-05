@@ -13,6 +13,6 @@
         public string? Address { get; set; }
         public string? City { get; set; }
         public string? Pincode { get; set; }
-        public DateTime CreatedOn { get; set; } = DateTime.Now;
+        public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
     }
 }

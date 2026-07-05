@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class OrdersController : ControllerBase
 {
     private readonly AppDbContext _db;
@@ -51,7 +52,7 @@ public class OrdersController : ControllerBase
             UserId = userId,
             TotalAmount = total,
             Status = "Pending",
-            OrderDate = DateTime.Now
+            OrderDate = DateTime.UtcNow
         };
 
         _db.Orders.Add(order);
