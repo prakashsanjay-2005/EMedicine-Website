@@ -3,8 +3,11 @@ import { getUserId } from "../services/auth";
 import api from "../services/api";
 import doctorImage from "../assets/login-doctor.jpg";
 import { toast } from "react-toastify";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     email: "",
     password: ""
@@ -35,7 +38,7 @@ function Login() {
      toast.success("Login Successful");
 
 setTimeout(() => {
-  window.location.href = "/medicines";
+  navigate("/medicines");
 }, 1500);
 
     } 
@@ -95,15 +98,15 @@ setTimeout(() => {
             Sign In
           </button>
 
-          <div className="text-center mt-4">
-            Don't have an account?
-            <a
-              href="/register"
-              className="ms-2 text-decoration-none"
-            >
-              Register
-            </a>
-          </div>
+         <div className="text-center mt-4">
+  Don't have an account?
+  <Link
+    to="/register"
+    className="ms-2 text-decoration-none"
+  >
+    Register
+  </Link>
+</div>
         </div>
       </div>
 
@@ -116,7 +119,7 @@ setTimeout(() => {
         }}
       >
         <img
-  src="/src/assets/login-doctor.jpg"
+  src={doctorImage}
   alt="Doctor"
   width="500"
 />

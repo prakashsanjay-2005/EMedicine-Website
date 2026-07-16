@@ -2,8 +2,10 @@ import { useState } from "react";
 import api from "../services/api";
 import doctorImage from "../assets/login-doctor.jpg";
 import { toast } from "react-toastify";
+import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
   firstName: "",
   lastName: "",
@@ -72,8 +74,9 @@ function Register() {
 
    toast.success(response.data);
 
+   
 setTimeout(() => {
-  window.location.href = "/login";
+  navigate("/login");
 }, 1500);
 
   } catch (error) {
@@ -198,12 +201,12 @@ setTimeout(() => {
 
 <div className="text-center mt-4">
   Already have an account?
-  <a
-    href="/login"
-    className="ms-2 text-decoration-none"
-  >
-    Login
-  </a>
+ <Link
+  to="/login"
+  className="ms-2 text-decoration-none"
+>
+  Login
+</Link>
 </div>
 
       </div>

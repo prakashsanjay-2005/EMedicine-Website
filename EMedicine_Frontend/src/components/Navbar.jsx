@@ -1,6 +1,5 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getRole } from "../services/auth";
-
 import {
   FaPills,
   FaShoppingCart,
@@ -14,6 +13,7 @@ import {
 
 
 function Navbar() {
+   const navigate = useNavigate();
   const role = getRole();
   const token = localStorage.getItem("token");
   const location = useLocation();
@@ -27,11 +27,10 @@ function Navbar() {
 }
 
   const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("userId");
-
-    window.location.href = "/login";
-  };
+  localStorage.removeItem("token");
+  localStorage.removeItem("userId");
+  navigate("/login");
+};
 
   return (
   <nav className="navbar navbar-expand-lg navbar-dark bg-primary shadow">
