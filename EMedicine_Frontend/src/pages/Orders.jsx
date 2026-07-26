@@ -204,11 +204,12 @@ const downloadPdf = async (order) => {
     {items.map((item) => (
       <tr key={item.id}>
         <td>
-          <img
+         <img
   src={`https://emedicine-website.onrender.com${item.imageUrl}`}
   alt={item.medicineName}
   width="80"
   height="80"
+  className="rounded"
   style={{ objectFit: "cover" }}
 />
         </td>
