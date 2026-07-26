@@ -171,8 +171,8 @@ const loadUser = async () => {
            <tr key={item.id}>
 
   <td>
-    <img
-  src={`https://localhost:7178${item.imageUrl}`}
+   <img
+  src={`https://emedicine-website.onrender.com${item.imageUrl}`}
   alt={item.medicineName}
   width="80"
   height="80"
