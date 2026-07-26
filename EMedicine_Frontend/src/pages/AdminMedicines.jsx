@@ -257,11 +257,11 @@ const updateMedicine = async () => {
 {form.imageUrl && (
   <div className="mb-3">
     <img
-      src={`https://localhost:7178${form.imageUrl}`}
-      alt="Preview"
-      width="150"
-      className="rounded shadow"
-    />
+  src={`https://emedicine-website.onrender.com${form.imageUrl}`}
+  alt="Preview"
+  width="150"
+  className="rounded shadow"
+/>
   </div>
 )}
 
@@ -308,13 +308,13 @@ const updateMedicine = async () => {
           {medicines.map((med) => (
             <tr key={med.id}>
               <td>{med.id}</td>
-              <td>{med.name}</td>
+              <td>{med.name}</td> 
               <td>{med.description}</td>
               <td>{med.price}</td>
               <td>{med.stock}</td>
               <td>
-  <img
-  src={`https://localhost:7178${med.imageUrl}`}
+ <img
+  src={`https://emedicine-website.onrender.com${med.imageUrl}`}
   alt={med.name}
   width="80"
   height="80"
