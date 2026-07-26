@@ -205,10 +205,11 @@ const downloadPdf = async (order) => {
       <tr key={item.id}>
         <td>
           <img
-  src={`https://localhost:7178${item.imageUrl}`}
+  src={`https://emedicine-website.onrender.com${item.imageUrl}`}
   alt={item.medicineName}
   width="80"
   height="80"
+  style={{ objectFit: "cover" }}
 />
         </td>
 
