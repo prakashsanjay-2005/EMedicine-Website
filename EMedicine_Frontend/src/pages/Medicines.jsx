@@ -93,11 +93,16 @@ function Medicines() {
 
         <div className="card shadow border-0 h-100">
 
-        <img
+       <img
   src={`https://emedicine-website.onrender.com${med.imageUrl}`}
   alt={med.name}
   className="card-img-top"
-  style={{ height: "220px", objectFit: "cover" }}
+  style={{
+    height: "220px",
+    width: "100%",
+    objectFit: "contain",
+    backgroundColor: "#fff"
+  }}
   onError={(e) => {
     console.log("Failed image:", e.target.src);
   }}
