@@ -73,9 +73,7 @@ public class MedicinesController : ControllerBase
         if (file == null || file.Length == 0)
             return BadRequest("No file selected");
 
-        var fileName =
-            Guid.NewGuid().ToString() +
-            Path.GetExtension(file.FileName);
+        var fileName = Path.GetFileName(file.FileName);
 
         var filePath = Path.Combine(
             Directory.GetCurrentDirectory(),
