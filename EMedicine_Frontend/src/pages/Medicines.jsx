@@ -108,7 +108,9 @@ function Medicines() {
   }}
 />
 
-          <div className="card-body">
+         <div
+  className="card-body d-flex flex-column"
+>
 
             <h5 className="card-title">
               {med.name}
@@ -136,13 +138,13 @@ function Medicines() {
   )}
 </p>
 
-           <button
-  className="btn btn-success w-100"
+         <button
+  className="btn btn-success w-100 mt-auto"
   disabled={med.stock <= 0}
-              onClick={() => addToCart(med.id)}
-            >
-              Add To Cart
-            </button>
+  onClick={() => addToCart(med.id)}
+>
+  Add To Cart
+</button>
 
           </div>
 
